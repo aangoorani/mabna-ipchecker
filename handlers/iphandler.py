@@ -50,7 +50,7 @@ def check_ip_util(ipAddress: str, maxAgeInDays=7):
         return -1,[]
 
 
-def agg_categories(reports: list[dict], num_th=10, percent_th=0.15):
+def agg_categories(reports: list[dict], num_th=100, percent_th=0.15):
     categories_dict = defaultdict(int)
     n = len(reports)
 

@@ -7,10 +7,13 @@ from io import StringIO
 
 
 
-def extract_ip(input_path):
+def extract_ip(input_path, is_text=False):
     """
     Extract the Ip addresses from the pdf report and return a list of ip addresses.
     """
+
+    if is_text:
+        return list(set(extract_ip_from_txt(input_path)))
 
     # Read PDF File 
     # this contain a list 
@@ -38,4 +41,17 @@ def extract_ip(input_path):
     csv_buf.truncate(0)
     csv_buf.close()
 
+    return ips
+
+
+def extract_ip_from_txt(input_path):
+    """
+    Extract the Ip addresses from the txt report and return a list of ip addresses.
+    """
+    with open(input_path, 'r', encoding='utf-8') as f:
+        lines = f.readlines()
+    ips = []
+    for line in lines:
+        if line:=line.strip():
+            ips.append(line)
     return ips
